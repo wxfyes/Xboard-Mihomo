@@ -3,11 +3,12 @@ import 'package:fl_clash/xboard/sdk/xboard_sdk.dart';
 
 /// 配置数据Provider
 /// 获取系统配置信息，如邮箱验证、邀请码等设置
-final configProvider = FutureProvider<ConfigData?>((ref) async {
+/// 使用 autoDispose 确保每次进入注册页面都重新获取最新配置
+final configProvider = FutureProvider.autoDispose<ConfigData?>((ref) async {
   try {
     return await XBoardSDK.getConfig();
   } catch (e) {
-    // 如果获取配置失败，返回null，注册页面会使用默认行为
+    // 配置获取失败时返回null，使用默认值
     return null;
   }
 });

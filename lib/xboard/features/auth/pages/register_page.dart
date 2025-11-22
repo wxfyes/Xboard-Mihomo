@@ -41,7 +41,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     final isInviteForce = config?.isInviteForce ?? false;
     final isEmailVerify = config?.isEmailVerify ?? false;
     
-    // 检查邀请码是否必填
+    // 检查邮请码是否必填
     if (isInviteForce && _inviteCodeController.text.trim().isEmpty) {
       _showInviteCodeDialog();
       return;
@@ -98,7 +98,6 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           String errorMessage = '注册失败';
           
           final errorStr = e.toString();
-          print('[RegisterPage] Caught error: $errorStr');
           
           // 尝试提取具体的错误信息
           if (errorStr.contains('XBoardException')) {
@@ -123,7 +122,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             errorMessage = errorMessage.substring(7);
           }
           
-          print('[RegisterPage] Display error message: $errorMessage');
+          // 500错误或通用错误提示：可能是邀请码问题
+          if (errorMessage.contains('遇到了些问题') || errorMessage.contains('500')) {
+            errorMessage = appLocalizations.inviteCodeIncorrect;
+          }
           
           XBoardNotification.showError(errorMessage);
         }
@@ -362,7 +364,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                                   const SizedBox(height: 20),
                             ],
                           ),
-                        // 根据配置决定邀请码字段的显示和必填状态
+                        // 邀请码：始终显示，根据配置改变标签（必填 vs 可选）
                         XBInputField(
                           controller: _inviteCodeController,
                           labelText: (config?.isInviteForce ?? false)

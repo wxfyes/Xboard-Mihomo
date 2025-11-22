@@ -6,17 +6,39 @@ import 'package:fl_clash/xboard/infrastructure/infrastructure.dart';
 /// 
 /// 提供所有 Repository 的依赖注入
 /// 
-/// 通过修改这里的 Provider，可以轻松切换不同的面板实现
-/// 例如：从 XBoard 切换到 V2Board
+/// ## 架构说明
+/// 
+/// 本项目采用统一的 SDK 层抽象，所有仓储都通过 XBoardSDK 调用。
+/// SDK 内部会根据配置中的 panelType 自动选择对应的实现（XBoard 或 V2Board）。
+/// 
+/// ### 切换面板类型的方法
+/// 
+/// 只需在配置文件（remote.config.json）中修改 panelType 即可：
+/// ```json
+/// {
+///   "panelType": "xboard",   // 使用 XBoard 面板
+///   // 或
+///   "panelType": "v2board",  // 使用 V2Board 面板
+///   ...
+/// }
+/// ```
+/// 
+/// SDK 初始化时会自动读取配置，创建对应的 API 实现。
+/// 仓储层无需修改，保持对面板实现的透明。
+/// 
+/// ### 技术细节
+/// 
+/// - SDK 层使用工厂模式 (ApiFactory) 根据 PanelType 创建对应的 API 实例
+/// - 所有 XBoard/V2Board API 都实现了统一的契约接口 (contracts)
+/// - 仓储层通过契约接口调用，与具体实现解耦
+/// - 支持的面板类型：xboard, v2board
 
 // ========== 用户相关 ==========
 
 /// 用户仓储 Provider
+/// 
+/// 注意：此仓储通过 XBoardSDK 调用，SDK 会根据 panelType 自动选择实现
 final userRepositoryProvider = Provider<UserRepository>((ref) {
-  // TODO: 未来根据配置动态选择实现
-  // final panelType = ref.watch(panelTypeProvider);
-  // if (panelType == 'v2board') return V2BoardUserRepository();
-  
   return XBoardUserRepository();
 });
 

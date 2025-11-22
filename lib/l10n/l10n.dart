@@ -5979,6 +5979,16 @@ class AppLocalizations {
     );
   }
 
+  /// `Invite code may be incorrect, please check and re-enter`
+  String get inviteCodeIncorrect {
+    return Intl.message(
+      'Invite code may be incorrect, please check and re-enter',
+      name: 'inviteCodeIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loading {
     return Intl.message('Loading...', name: 'loading', desc: '', args: []);

@@ -785,6 +785,7 @@
   "inviteCode": "邀请码",
   "pleaseEnterInviteCode": "请输入邀请码",
   "inviteCodeOptional": "邀请码（可选）",
+  "inviteCodeIncorrect": "邀请码可能不正确，请检查后重新输入",
   "loading": "加载中...",
   "registerAccount": "注册账号",
   "alreadyHaveAccount": "已有账号？",

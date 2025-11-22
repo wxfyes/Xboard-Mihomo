@@ -485,6 +485,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "inviteCodeOptional": MessageLookupByLibrary.simpleMessage(
       "Invite Code (optional)",
     ),
+    "inviteCodeIncorrect": MessageLookupByLibrary.simpleMessage(
+      "Invite code may be incorrect, please check and re-enter",
+    ),
     "inviteCodeRequired": MessageLookupByLibrary.simpleMessage(
       "Invite Code Required",
     ),

@@ -336,6 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "inviteCode": MessageLookupByLibrary.simpleMessage("邀请码"),
     "inviteCodeGenFailed": MessageLookupByLibrary.simpleMessage("邀请码生成失败"),
     "inviteCodeOptional": MessageLookupByLibrary.simpleMessage("邀请码（可选）"),
+    "inviteCodeIncorrect": MessageLookupByLibrary.simpleMessage("邀请码可能不正确，请检查后重新输入"),
     "inviteCodeRequired": MessageLookupByLibrary.simpleMessage("需要邀请码"),
     "inviteCodeRequiredMessage": MessageLookupByLibrary.simpleMessage(
       "注册需要邀请码，请联系已注册用户获取邀请码后再进行注册。",

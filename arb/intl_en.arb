@@ -815,6 +815,7 @@
   "inviteCode": "Invite Code",
   "pleaseEnterInviteCode": "Please enter invite code",
   "inviteCodeOptional": "Invite Code (optional)",
+  "inviteCodeIncorrect": "Invite code may be incorrect, please check and re-enter",
   "loading": "Loading...",
   "registerAccount": "Register Account",
   "alreadyHaveAccount": "Already have an account?",
